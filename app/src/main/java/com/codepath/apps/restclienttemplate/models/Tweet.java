@@ -1,6 +1,6 @@
 package com.codepath.apps.restclienttemplate.models;
 
-import com.facebook.stetho.inspector.jsonrpc.JsonRpcException;
+import com.codepath.apps.restclienttemplate.TimeFormatter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,5 +17,9 @@ public class Tweet {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         return tweet;
+    }
+
+    public String getFormattedTimeStamp(){
+        return TimeFormatter.getTimeDifference(createdAt);
     }
 }
