@@ -22,4 +22,20 @@ public class Tweet {
     public String getFormattedTimeStamp(){
         return TimeFormatter.getTimeDifference(createdAt);
     }
+
+    public String getBody() {
+        return body;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public long getUid() {
+        return uid;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }

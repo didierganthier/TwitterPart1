@@ -1,12 +1,16 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.codepath.apps.restclienttemplate.TimelineAcivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class User {
     public String name, screenName,profileImageUrl;
     public long uid;
-
 
     public static User fromJson(JSONObject jsonObject) throws JSONException
     {

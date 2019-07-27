@@ -1,18 +1,24 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -37,7 +43,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Tweet tweet = tweets.get(i);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        final Tweet tweet = tweets.get(i);
         viewHolder.tvBody.setText(tweet.body);
         viewHolder.tvScreenName.setText(tweet.user.screenName);
         viewHolder.tvTimeStamp.setText(tweet.getFormattedTimeStamp()+" ago");
@@ -46,6 +53,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 .apply(new RequestOptions()
                         .transform(new RoundedCorners(50)))
                 .into(viewHolder.ivProfileImage);
+        viewHolder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context,DetailsActivity.class);
+                i.putExtra("screenName",tweet.getUser().screenName);
+                i.putExtra("profileUrl",tweet.getUser().profileImageUrl);
+                i.putExtra("body",tweet.getBody());
+                i.putExtra("timestamp",tweet.getFormattedTimeStamp());
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -67,6 +85,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         public ImageView ivProfileImage;
         public TextView tvScreenName, tvBody, tvTimeStamp;
+        public RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +93,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
+            container = itemView.findViewById(R.id.container);
         }
     }
 }
