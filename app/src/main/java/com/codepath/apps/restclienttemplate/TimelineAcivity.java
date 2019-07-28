@@ -39,6 +39,7 @@ public class TimelineAcivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
     private EndlessRecyclerViewScrollListener scrollListener;
     private Toolbar toolbar;
+    private Tweet tweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,33 @@ public class TimelineAcivity extends AppCompatActivity {
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                client.getNextPageOfTweets(new JsonHttpResponseHandler(){
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        List<Tweet>tweetsToAdd = new ArrayList<>();
+                        for (int i=0; i < response.length(); i++){
+                            try {
+                                JSONObject jsonTweetObject = response.getJSONObject(i);
+                                tweet = Tweet.fromJson(jsonTweetObject);
+                                tweetsToAdd.add(tweet);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        tweetsAdapter.addTweets(tweetsToAdd);
+                        swipeContainer.setRefreshing(false);
+                    }
 
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+                    }
+                },tweet.uid);
             }
         };
         rvTweets.addOnScrollListener(scrollListener);
@@ -85,7 +112,7 @@ public class TimelineAcivity extends AppCompatActivity {
                 for (int i=0; i < response.length(); i++){
                     try {
                         JSONObject jsonTweetObject = response.getJSONObject(i);
-                        Tweet tweet = Tweet.fromJson(jsonTweetObject);
+                        tweet = Tweet.fromJson(jsonTweetObject);
                         tweetsToAdd.add(tweet);
                     } catch (JSONException e) {
                         e.printStackTrace();
