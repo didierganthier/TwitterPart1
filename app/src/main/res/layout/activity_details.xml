@@ -1,71 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".DetailsActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="#345">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/swarm"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp"
+                android:text="@string/app_name"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tweetScreenName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:text="ScreenName"
+        android:gravity="center"
+        />
+
+    <ImageView
+        android:id="@+id/userProfile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/swarm"
+        android:layout_marginTop="10dp"
+        />
 
     <TextView
         android:id="@+id/tweetBody"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userProfile"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="6dp"
-        android:gravity="center"
-        android:text="Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte."
+        android:text="Le Lorem Ipsum est simplement du faux texte employé dans la composition
+        et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie
+        depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte
+        pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles,
+         mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
+         Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant
+         des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications
+         de mise en page de texte, comme Aldus PageMaker."
+        android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
-    <ImageView
-        android:id="@+id/userProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tweetScreenName"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="146dp"
-        app:srcCompat="@drawable/bee" />
-
-    <TextView
-        android:id="@+id/tweetScreenName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="TextView"
-        android:textColor="@android:color/white" />
+        />
 
     <TextView
         android:id="@+id/tweetTimeStamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tweetBody"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="124dp"
-        android:gravity="center"
-        android:text="TextView"
+        android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
-</RelativeLayout>
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="1 hour ago"
+        />
+</LinearLayout>

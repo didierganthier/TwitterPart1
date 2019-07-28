@@ -8,16 +8,18 @@
     android:background="@android:color/black"
     tools:context=".TimelineAcivity">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:background="#345"
         >
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="3dp"
             android:src="@drawable/swarm"
             android:layout_marginBottom="10dp"
@@ -32,6 +34,7 @@
             android:textSize="20sp"
             />
     </android.support.v7.widget.Toolbar>
+
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
