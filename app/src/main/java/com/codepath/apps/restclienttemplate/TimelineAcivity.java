@@ -76,6 +76,7 @@ public class TimelineAcivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
+                        
                         tweetsAdapter.addTweets(tweetsToAdd);
                         swipeContainer.setRefreshing(false);
                     }
