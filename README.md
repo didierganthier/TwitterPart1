@@ -32,7 +32,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='twitter.mp4'/>
+<img src='twitter1.gif' width='200px'/>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
